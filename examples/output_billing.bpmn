@@ -19,8 +19,8 @@
     <bpmn:sequenceFlow id="Flow_10" sourceRef="ExclusiveGateway_5" targetRef="Task_9" name="no">
       <bpmn:conditionExpression>no</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_12" sourceRef="Task_7" targetRef="Task_11"/>
-    <bpmn:sequenceFlow id="Flow_13" sourceRef="Task_9" targetRef="Task_11"/>
+    <bpmn:sequenceFlow id="Flow_12" sourceRef="Task_9" targetRef="Task_11"/>
+    <bpmn:sequenceFlow id="Flow_13" sourceRef="Task_7" targetRef="Task_11"/>
     <bpmn:sequenceFlow id="Flow_15" sourceRef="Task_11" targetRef="Task_14"/>
     <bpmn:sequenceFlow id="Flow_16" sourceRef="Task_14" targetRef="EndEvent_1"/>
   </bpmn:process>
@@ -84,14 +84,14 @@
         <di:waypoint x="700" y="220.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_Flow_12" bpmnElement="Flow_12">
-        <di:waypoint x="800" y="140.0"/>
-        <di:waypoint x="825.0" y="140.0"/>
+        <di:waypoint x="800" y="220.0"/>
+        <di:waypoint x="825.0" y="220.0"/>
         <di:waypoint x="825.0" y="140.0"/>
         <di:waypoint x="850" y="140.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_Flow_13" bpmnElement="Flow_13">
-        <di:waypoint x="800" y="220.0"/>
-        <di:waypoint x="825.0" y="220.0"/>
+        <di:waypoint x="800" y="140.0"/>
+        <di:waypoint x="825.0" y="140.0"/>
         <di:waypoint x="825.0" y="140.0"/>
         <di:waypoint x="850" y="140.0"/>
       </bpmndi:BPMNEdge>
