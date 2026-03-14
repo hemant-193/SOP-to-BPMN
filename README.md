@@ -60,7 +60,7 @@ xml is can be seen in examples directory (examples/output_loan.bpmn)
 
 ## Next Steps and Improvements
 
-Right now, this prototype handles clean, structured `.docx` files using simple word matching. But real life isn't that clean. If we wanted to deploy this in a real production environment to handle *any* type of SOP, here's some improvements
+Right now, this handles clean, structured `.docx` files using simple word matching. But real life isn't that clean. If we wanted to deploy this in a real production environment to handle *any* type of SOP, here's some improvements
 
 ### Handling Messy Inputs
 Currently, we expect simple paragraphs. But real SOPs are messy—they come as PDFs, Confluence pages, or even scanned images with tables and nested lists. 
