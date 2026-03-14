@@ -70,8 +70,11 @@ Since the code has a `BaseParser` interface, we can add new parsers without brea
 The current `mapper.py` relies on hardcoded checks like `"If yes"` or `"go to step X"`. That's brittle. Real SOPs say things like "The Manager must approve before proceeding." 
 To fix this, we should replace the regex mapper with a lightweight LLM or an NLP library. We'd feed the cleaned text into the model to extract the intent, actors, and decision logic, turning complex human phrasing into our strict `BPMNModel` structure reliably.
 
-### **Background Processing**: Running large documents through an LLM is slow. We'd need to wrap the parser in an API (like FastAPI) and hand the actual work off to a background queue (like Celery/RabbitMQ) so the service stays responsive.
+### Background Processing: 
+Running large documents through an LLM is slow. We'd need to wrap the parser in an API (like FastAPI) and hand the actual work off to a background queue (like Celery/RabbitMQ) so the service stays responsive.
 
-### **Storage**: We'd need a real database (like Postgres) to store the original docs, the resulting BPMN XML.
+### Storage:
+ We'd need a real database (like Postgres) to store the original docs, the resulting BPMN XML.
 
-### **Better Diagram Layouts**: We need to improve logic for creating clean diagrams.
+### Better Diagram Layouts:
+ We need to improve logic for creating clean diagrams.
