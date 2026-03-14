@@ -6,16 +6,6 @@ A Python-based tool that automatically transforms Standard Operating Procedure (
 
 The system is built on a modular pipeline, the architecture is divided into three distinct, highly testable stages: **Parsing**, **Mapping**, and **Generating**. This ensures that changes to the input format or layout rendering won't require rewriting the core business logic.
 
-### System Architecture
-
-flowchart 
-    A[SOP Input (.docx)] --> B[DocxSOPParser]
-    B --> C[Raw Steps: List of strings]
-    C --> D[SOPToBPMNMapper]
-    D --> E[BPMN Internal Model]
-    E --> F[BPMN Generator]
-    F --> G[BPMN XML Output (.bpmn)]
-
 #### Visual Flow Diagram
 ![Flow Diagram](examples/flow_diagram.png)
 
@@ -76,12 +66,12 @@ Right now, this prototype handles clean, structured `.docx` files using simple w
 Currently, we expect simple paragraphs. But real SOPs are messy—they come as PDFs, Confluence pages, or even scanned images with tables and nested lists. 
 Since the code has a `BaseParser` interface, we can add new parsers without breaking everything else. The immediate goal would be building a preprocessing step that takes messy PDFs or Confluence APIs and flattens them into a clean, standard text format before the mapping even starts.
 
-### Ditching the Regex for an LLM
+### Using LLM or NLP for better accuracy
 The current `mapper.py` relies on hardcoded checks like `"If yes"` or `"go to step X"`. That's brittle. Real SOPs say things like "The Manager must approve before proceeding." 
 To fix this, we should replace the regex mapper with a lightweight LLM or an NLP library. We'd feed the cleaned text into the model to extract the intent, actors, and decision logic, turning complex human phrasing into our strict `BPMNModel` structure reliably.
 
-* **Background Processing**: Running large documents through an LLM is slow. We'd need to wrap the parser in an API (like FastAPI) and hand the actual work off to a background queue (like Celery/RabbitMQ) so the service stays responsive.
+### **Background Processing**: Running large documents through an LLM is slow. We'd need to wrap the parser in an API (like FastAPI) and hand the actual work off to a background queue (like Celery/RabbitMQ) so the service stays responsive.
 
-* **Storage**: We'd need a real database (like Postgres) to store the original docs, the resulting BPMN XML.
+### **Storage**: We'd need a real database (like Postgres) to store the original docs, the resulting BPMN XML.
 
-* **Better Diagram Layouts**: We need to improve logic for creating clean diagrams.
+### **Better Diagram Layouts**: We need to improve logic for creating clean diagrams.
