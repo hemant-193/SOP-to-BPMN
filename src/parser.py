@@ -27,3 +27,4 @@ class DocxSOPParser(BaseParser):
                 extracted_steps.append(text)
                 
         return extracted_steps
+    

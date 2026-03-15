@@ -44,3 +44,4 @@ class BPMNModel:
         
     def add_flow(self, flow: SequenceFlow):
         self.flows.append(flow)
+        

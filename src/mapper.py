@@ -131,3 +131,4 @@ class SOPToBPMNMapper:
                 add_flow(src, registry[tgt_label], cond)
 
         return model
+    

@@ -1,6 +1,6 @@
 # SOP to BPMN Converter
 
-A Python-based tool that automatically transforms Standard Operating Procedure (SOP) documents (.docx) into Business Process Model and Notation (BPMN) 2.0 XML models.
+A Python based tool that transforms Standard Operating Procedure (SOP) documents (.docx) into Business Process Model and Notation (BPMN) 2.0 XML models.
 
 ## Approach & Architecture
 
@@ -21,7 +21,7 @@ The system is built on a modular pipeline, the architecture is divided into thre
 ## Key Assumptions
 
 The current implementation makes the following assumptions about the input SOP format:
-- **Format**: The input is a valid `.docx` file.
+- **Format**: The input is a valid `.docx` file only.
 - **Structure**: Each operational step is represented incrementally, typically separated by paragraphs.
 - **Numbering**: Steps are implicitly or explicitly ordered (e.g., prefixing with "1.", "1.1.", etc.).
 - **Decisions & Gateways**: 
@@ -35,7 +35,7 @@ The current implementation makes the following assumptions about the input SOP f
 The repository includes two example SOPs to demonstrate the converter's capabilities.
 
 ### Example 1: Billing Triage
-SOP doc is in examples directory (input_billing.docx)
+SOP doc is in examples directory (examples/input_billing.docx)
 
 **Input (`examples/input_billing.docx`) Steps:**
 1. Receive customer support email.
@@ -60,20 +60,20 @@ xml is can be seen in examples directory (examples/output_loan.bpmn)
 
 ## Next Steps and Improvements
 
-Right now, this handles clean, structured `.docx` files using simple word matching. But real life isn't that clean. If we wanted to deploy this in a real production environment to handle *any* type of SOP, here's some improvements
+Right now, this handles clean, structured `.docx` files using simple word matching. But real life isn't that clean.
 
 ### Handling Messy Inputs
 Currently, we expect simple paragraphs. But real SOPs are messy—they come as PDFs, Confluence pages, or even scanned images with tables and nested lists. 
 Since the code has a `BaseParser` interface, we can add new parsers without breaking everything else. The immediate goal would be building a preprocessing step that takes messy PDFs or Confluence APIs and flattens them into a clean, standard text format before the mapping even starts.
 
 ### Using LLM or NLP for better accuracy
-The current `mapper.py` relies on hardcoded checks like `"If yes"` or `"go to step X"`. That's brittle. Real SOPs will be complex and less structured. To fix this, we should replace the regex mapper with a lightweight LLM or an NLP library. We'd feed the cleaned text into the model to extract the intent, actors, and decision logic, turning complex human phrasing into our strict `BPMNModel` structure reliably.
+The current `mapper.py` relies on hardcoded checks like `"If yes"` or `"go to step X"`. That's brittle. Real SOPs will be complex and less structured. To fix this, we should replace the regex mapper with a lightweight LLM or an NLP library. We would feed the cleaned text into the model to extract the intent, actors, and decision logic, turning complex human phrasing into our strict `BPMNModel` structure reliably.
 
 ### Background Processing: 
 Running large documents through an LLM is slow. We'd need to wrap the parser in an API (like FastAPI) and hand the actual work off to a background queue (like Celery/RabbitMQ) so the service stays responsive. 
 
 ### Storage:
- We'd need a real database (like Postgres) to store the original docs, the resulting BPMN XML.
+ We need a real database (like Postgres) to store the original docs, the resulting BPMN XML.
 
 ### Better Diagram Layouts:
  We need to improve logic for creating clean diagrams.
