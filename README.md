@@ -63,7 +63,7 @@ xml is can be seen in examples directory (examples/output_loan.bpmn)
 Right now, this handles clean, structured `.docx` files using simple word matching. But real life isn't that clean.
 
 ### Handling Messy Inputs
-Currently, we expect simple paragraphs. But real SOPs are messy—they come as PDFs, Confluence pages, or even scanned images with tables and nested lists. 
+Currently, we expect simple paragraphs. But real SOPs are messy they come as PDFs, Confluence pages, or even scanned images with tables and nested lists. 
 Since the code has a `BaseParser` interface, we can add new parsers without breaking everything else. The immediate goal would be building a preprocessing step that takes messy PDFs or Confluence APIs and flattens them into a clean, standard text format before the mapping even starts.
 
 ### Using LLM or NLP for better accuracy
